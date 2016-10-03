@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Star Wars Hangman Game</title>
+
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+</head>
+<body>
+	<header>
+		<h1 class="text-center">Hangman</h1>
+		<h2 class="text-center">Star Wars Style</h2>
+		<h3 class="text-center" id="gameHeader"></h3>
+	</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-4 panel panel-default">
+				<img class="img-rounded img-responsive center-block" id="gameImage" src="assets/images/starwars.jpg" alt="Star Wars Image">
+			</div>
+			<div class="col-sm-4 panel panel-default">
+				<p>Press Any Key to Get Started</p>
+				<p>Wins</p>
+				<p id="numWins"></p>
+				<p>Current Word</p>
+				<p id="currentWord"></p>
+				<p>Number of Guesses Remaining</p>
+				<p id="numGuessesRemaining"></p>
+				<p>Letters Already Guessed</p>
+				<p id="lettersAlreadyGuessed"></p>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</div>
+</body>
+<script src='assets/javascript/game.js'></script>
+</html>
