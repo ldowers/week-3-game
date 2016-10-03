@@ -1,0 +1,21 @@
+body {
+	background-image: url("../images/star_background.jpg");
+}
+
+@font-face {
+	font-family: StarWarsFont;
+	src: url(../fonts/35937_StarJediHollow.tff);
+}
+
+.starwars-font {
+	font-family: StarWarsFont;
+	color: yellow;
+}
+
+.box {
+	min-height: 420px;
+	padding-top: 40px;
+	border: 20px groove;
+	background-color: black;
+	color: white;
+}
