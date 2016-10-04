@@ -1,5 +1,5 @@
 var wins = 0;
-var wordOptions = ['LEIA', 'LUKE', 'HAN SOLO', 'YODA', 'CHEWBACCA', 'DEATH STAR', 'DARTH VADER'];
+var wordOptions = ['PRINCESS LEIA', 'LUKE SKYWALKER', 'HAN SOLO', 'YODA', 'CHEWBACCA', 'DEATH STAR', 'DARTH VADER'];
 var imgOptions = ['assets/images/leia.jpg', 'assets/images/luke.jpg', 'assets/images/han_solo.jpg', 'assets/images/yoda.jpg', 'assets/images/chewbacca.jpg', 'assets/images/death_star.jpg', 'assets/images/darth_vader.jpg'];
 var randomNumber = Math.floor(Math.random() * wordOptions.length);
 var randomWord = wordOptions[randomNumber];
@@ -89,7 +89,7 @@ document.onkeyup = function(event) {
 	else if (guesses === 0) {
 		console.log("You lose!");
 		document.querySelector("#gameHeader").innerHTML = "";
-		document.querySelector("#gameImage").src = "assets/images/starwars.jpg";
+		document.querySelector("#gameImage").src = "assets/images/starwars-new.jpg";
 		
 		randomNumber = Math.floor(Math.random() * wordOptions.length);
 		randomWord = wordOptions[randomNumber];
