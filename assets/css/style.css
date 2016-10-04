@@ -2,13 +2,25 @@ body {
 	background-image: url("../images/star_background.jpg");
 }
 
+h1 {
+	font-size: 46px;
+}
+
+h2 {
+	font-size: 40px;
+}
+
+h3 {
+	font-size: 34px;
+}
+
 @font-face {
 	font-family: StarWarsFont;
-	src: url(../fonts/35937_StarJediHollow.tff);
+	src: url(../fonts/SF%20Distant%20Galaxy%20Outline%20Italic.ttf) format('truetype');
 }
 
 .starwars-font {
-	font-family: StarWarsFont;
+	font-family: StarWarsFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	color: yellow;
 }
 
