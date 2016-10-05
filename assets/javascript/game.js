@@ -1,117 +1,88 @@
+// Variables
+
 var wins = 0;
 var wordOptions = ['PRINCESS LEIA', 'LUKE SKYWALKER', 'HAN SOLO', 'YODA', 'CHEWBACCA', 'DEATH STAR', 'DARTH VADER'];
 var imgOptions = ['assets/images/leia.jpg', 'assets/images/luke.jpg', 'assets/images/han_solo.jpg', 'assets/images/yoda.jpg', 'assets/images/chewbacca.jpg', 'assets/images/death_star.jpg', 'assets/images/darth_vader.jpg'];
-var randomNumber = Math.floor(Math.random() * wordOptions.length);
-var randomWord = wordOptions[randomNumber];
-var guesses = 10;
+var randomNumber = 0;
+var randomWord = "";
+var guesses = 0;
 var incorrectLetters = [];
 var currentWord = [];
 
-for (var i = 0; i < randomWord.length; i++) {
-	if (randomWord[i] === " ") {
-		currentWord.push("&nbsp;");
-	}
-	else  {
-		currentWord.push("_");
+// Functions
+
+function chooseRandomWord() {
+	randomNumber = Math.floor(Math.random() * wordOptions.length);
+	randomWord = wordOptions[randomNumber];
+}
+
+function replaceLettersWithBlanks() {
+	for (var i = 0; i < randomWord.length; i++) {
+		if (randomWord[i] === " ") {
+			currentWord.push("&nbsp;");
+		}
+		else  {
+			currentWord.push("_");
+		}
 	}
 }
 
-console.log("randomWord: " + randomWord);
-console.log("currentWord: " + currentWord);
+function replaceBlankWithLetter(userGuess) {
+	for (var i = 0; i < randomWord.length; i++) {
+		if (randomWord[i] === userGuess) {
+			currentWord[i] = userGuess;
+		}
+	}
+}
 
-currentWordHTML = currentWord.join(" ");
-document.querySelector("#currentWord").innerHTML = currentWordHTML;
+function printHTML() {
+	if (wins > 0) {
+		document.querySelector("#numWins").innerHTML = wins;		
+	}
+	document.querySelector("#currentWord").innerHTML = currentWord.join(" ");
+	document.querySelector("#numGuessesRemaining").innerHTML = guesses;
+	document.querySelector("#lettersAlreadyGuessed").innerHTML = incorrectLetters.join(", ");
+}
 
-document.querySelector("#numGuessesRemaining").innerHTML = guesses;
+function printGameHTML(gameHeader, gameImage) {
+	document.querySelector("#gameHeader").innerHTML = gameHeader;
+	document.querySelector("#gameImage").src = gameImage;	
+}
+
+function resetVariables() {
+	guesses = 10;
+	incorrectLetters = [];
+	currentWord = [];
+	chooseRandomWord();
+	replaceLettersWithBlanks();	
+}
+
+// Play Game
+
+resetVariables();
+
+printHTML();
 
 document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
 
-	console.log("userGuess: " + userGuess);
-	console.log("randomWord: " + randomWord);
-
 	if (randomWord.indexOf(userGuess) >= 0) {
-		console.log("Correct");
-
-		for (var i = 0; i < randomWord.length; i++) {
-			if (randomWord[i] === userGuess) {
-				currentWord[i] = userGuess;
-			}
-		}
-
-		console.log(currentWord);
-
-		currentWordHTML = currentWord.join(" ");
-		document.querySelector("#currentWord").innerHTML = currentWordHTML;		
+		replaceBlankWithLetter(userGuess);
 	}
 	else if (incorrectLetters.indexOf(userGuess) < 0) {
-		console.log("Wrong");
-
 		guesses--;
-		document.querySelector("#numGuessesRemaining").innerHTML = guesses;
-
 		incorrectLetters.push(userGuess);
-		incorrectLettersHTML = incorrectLetters.join(", ");
-		document.querySelector("#lettersAlreadyGuessed").innerHTML = incorrectLettersHTML;
-
-		console.log(incorrectLetters);
 	}
+
 	if (currentWord.indexOf("_") < 0) {
-		console.log("You win!");
-		document.querySelector("#gameHeader").innerHTML = randomWord;
-		document.querySelector("#gameImage").src = imgOptions[randomNumber];
+		printGameHTML(randomWord, imgOptions[randomNumber]);
 		wins++;
-		randomNumber = Math.floor(Math.random() * wordOptions.length);
-		randomWord = wordOptions[randomNumber];
-		guesses = 10;
-		incorrectLetters = [];
-		currentWord = [];
-
-		for (var i = 0; i < randomWord.length; i++) {
-			if (randomWord[i] === " ") {
-				currentWord.push("&nbsp;");
-			}
-			else  {
-				currentWord.push("_");
-			}
-		}
-
-		console.log(randomWord);
-		console.log(currentWord);
-
-		document.querySelector("#numWins").innerHTML = wins;
-
-		currentWordHTML = currentWord.join(" ");
-		document.querySelector("#currentWord").innerHTML = currentWordHTML;
-		document.querySelector("#numGuessesRemaining").innerHTML = guesses;
-		document.querySelector("#lettersAlreadyGuessed").innerHTML = incorrectLetters;
+		resetVariables();
 	}
 	else if (guesses === 0) {
-		console.log("You lose!");
-		document.querySelector("#gameHeader").innerHTML = "";
-		document.querySelector("#gameImage").src = "assets/images/starwars-new.jpg";
-		
-		randomNumber = Math.floor(Math.random() * wordOptions.length);
-		randomWord = wordOptions[randomNumber];
-		guesses = 10;
-		incorrectLetters = [];
-		currentWord = [];
-
-		for (var i = 0; i < randomWord.length; i++) {
-			if (randomWord[i] === " ") {
-				currentWord.push("&nbsp;");
-			}
-			else  {
-				currentWord.push("_");
-			}
-		}
-
-		console.log(randomWord);
-		console.log(currentWord);
-
-		currentWordHTML = currentWord.join(" ");
-		document.querySelector("#currentWord").innerHTML = currentWordHTML;
-		document.querySelector("#numGuessesRemaining").innerHTML = guesses;
-		document.querySelector("#lettersAlreadyGuessed").innerHTML = incorrectLetters;		
+		printGameHTML("", "assets/images/starwars-new.jpg");
+		resetVariables();
 	}
+
+	printHTML();
 }
