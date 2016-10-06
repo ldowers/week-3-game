@@ -84,7 +84,6 @@ function resetVariables() {
 
 // Play Game
 
-printGameHTML("", "assets/images/starwars-old.jpg");
 playSound("http://www.thesoundarchive.com/starwars/star-wars-theme-song.mp3");
 resetVariables();
 printHTML();
@@ -107,7 +106,7 @@ document.onkeyup = function(event) {
 		resetVariables();
 	}
 	else if (guesses === 0) {
-		printGameHTML("", "assets/images/starwars-new.jpg");
+		printGameHTML("&nbsp;", "assets/images/starwars-new.jpg");
 		playSound("http://www.thesoundarchive.com/starwars/star-wars-theme-song.mp3");
 		resetVariables();
 	}
